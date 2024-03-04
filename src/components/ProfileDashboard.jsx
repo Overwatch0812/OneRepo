@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 export default function ProfileDashboard() {
   const [user, setUser] = useState(null);
   const getData = async () => {
-    const resp = await fetch("http://127.0.0.1:7000/auth/users/me/", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-      },
-    });
+    const resp = await fetch(
+      "https://manage-api-nine.vercel.app/auth/users/me/",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `JWT ${localStorage.getItem("access")}`,
+        },
+      }
+    );
     const data = await resp.json();
     setUser(data);
     console.log(data);

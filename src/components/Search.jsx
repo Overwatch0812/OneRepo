@@ -10,7 +10,7 @@ export default function Search() {
   const [filteredCard, setFilteredCard] = useState(cardData);
   const [search, setSearch] = useState("");
   async function getCardData() {
-    const res = await fetch("http://127.0.0.1:7000/api/");
+    const res = await fetch("https://manage-api-nine.vercel.app/api/");
     const data = await res.json();
     console.log(data);
     setCardData(data);

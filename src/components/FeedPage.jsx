@@ -44,26 +44,26 @@ export default function FeedPage() {
     (state) => state.recommendations
   );
 
-  useEffect(() => {
-    if (isUserLoaded) {
-      dispatch(fetchProjectApiData()).then((e) => setCardData(e.payload));
-      dispatch(recommend(user.id)).then((e) => setRevCardData(e.payload.b));
-    }
-  }, [isUserLoaded, user, IsError, isSuccess, dispatch, navigate]);
+  // useEffect(() => {
+  //   if (isUserLoaded) {
+  //     dispatch(fetchProjectApiData()).then((e) => setCardData(e.payload));
+  //     // dispatch(recommend(user.id)).then((e) => setRevCardData(e.payload.b));
+  //   }
+  // }, [isUserLoaded, user, IsError, isSuccess, dispatch, navigate]);
 
   async function getCardData() {
-    const res = await fetch("http://127.0.0.1:7000/api/");
+    const res = await fetch("https://manage-api-nine.vercel.app/api/");
     const data = await res.json();
     setCardData(data);
   }
   useEffect(() => {
     getCardData();
   }, []);
-  console.log(revCardData);
+  console.log(cardData);
 
   //
   // return <h1>hello</h1>;
-  return revCardData.length === 0 ? (
+  return cardData.length === 0 ? (
     <div className="px-8 mx-3 lg:mx-auto my-4 text-white w-full flex flex-col gap-8">
       <Shimmer />
     </div>
@@ -84,28 +84,7 @@ export default function FeedPage() {
           })}
         </Carousel>
       </div>
-      <div>
-        {revCardData.length === 0 ? (
-          <div className="flex w-full justify-center lg:justify-start my-3">
-            {/* <Shimmer /> */}
-          </div>
-        ) : (
-          <>
-            <div className="flex w-full justify-center lg:justify-start my-3">
-              <h1 className="text-2xl font-semibold">Recommended For You </h1>
-            </div>
-            <Carousel responsive={responsive} itemClass="pr-6">
-              {revCardData.map((project) => {
-                return (
-                  <Link to={"/project/" + project.id} key={project.id}>
-                    <FeedCard {...project} />
-                  </Link>
-                );
-              })}
-            </Carousel>
-          </>
-        )}
-      </div>
+
       {/* <div
 				className="my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-6 lg:gap-7 xl:gap-8
 			"

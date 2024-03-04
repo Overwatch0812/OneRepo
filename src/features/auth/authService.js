@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_DOMAIN = "http://127.0.0.1:7000";
+const BACKEND_DOMAIN = "https://manage-api-nine.vercel.app";
 
 const REGISTER_URL = `${BACKEND_DOMAIN}/auth/users/`;
 const User_data = `${BACKEND_DOMAIN}/auth/users/me/`;

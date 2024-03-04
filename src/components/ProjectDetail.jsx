@@ -19,7 +19,7 @@ const ProjectDetail = () => {
   // }, []);
 
   async function getProjectById() {
-    const res = await fetch(`http://127.0.0.1:7000/api/${id}/`);
+    const res = await fetch(`https://manage-api-nine.vercel.app/api/${id}/`);
     const data = await res.json();
     console.log(data);
     setProjectDetail(data);
